@@ -1,0 +1,25 @@
+import win.ui;
+import inet.http;
+/*DSG{{*/
+mainForm = win.form(text="aardio form";right=759;bottom=469)
+mainForm.add(
+button2={cls="button";text="button2";left=219;top=355;right=342;bottom=397;z=2};
+edit={cls="edit";text="edit";left=486;top=77;right=717;bottom=318;autohscroll=false;autovscroll=false;edge=1;multiline=1;z=1}
+)
+/*}}*/
+io.open();
+mainForm.show() 
+http=inet.http();
+
+mainForm.button2.oncommand = function(id,event){
+	//mainForm.msgbox( mainForm.button2.text );
+	http.beginRequest("http://www.5iads.cn/","GET");
+	http.send();
+	codepostdata="num=8349fa8b-3da7-62e0-203a-30ac76ae39500.010465721755081425";
+	var codehtml=http.post("http://www.5iads.cn/module/user/code.asp",codepostdata);
+	codehtml=string.fromto(codehtml);
+	mainForm.edit.text=codehtml;
+	
+}
+
+return win.loopMessage(); 
