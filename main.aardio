@@ -7,20 +7,24 @@ button={cls="button";text="button";left=172;top=59;right=259;bottom=89;z=2};
 edit={cls="edit";left=447;top=22;right=720;bottom=383;autohscroll=false;autovscroll=false;edge=1;multiline=1;z=1}
 )
 /*}}*/
+
 io.open();
 whttp=inet.whttp();
 
 mainForm.button.oncommand = function(id,event){
 	//mainForm.msgbox( mainForm.button.text );
 	
-	
+	codeid='';//登录验证码发送数据
 	whttp.beginRequest("http://www.5iads.cn","GET");
 	whttp.send();
 	whttp.endRequest();
 	codepostdata="num=0";
 	var codehtml=whttp.post("http://www.5iads.cn/module/user/code.asp",codepostdata);
 	mainForm.edit.text=codehtml;
-	codelogindata="action=loginsys&Username=tempuu&Password=ydyzxnow&checkcode=%25u63A8%25u5E7F&ref=";
+	codeid=string.match(codehtml,'id=(.*)|');//判断验证码的ID
+	
+	io.print(codeid);
+	codelogindata='action=loginsys&Username=tempuu&Password=ydyzxnow&checkcode=%25u63A8%25u5E7F&ref=';
 	codeloginhtml=whttp.post("http://www.5iads.cn/module/user/login.asp",codelogindata);
 	io.print(codeloginhtml);
 	
