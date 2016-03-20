@@ -14,7 +14,7 @@ whttp=inet.whttp();
 mainForm.button.oncommand = function(id,event){
 	//mainForm.msgbox( mainForm.button.text );
 	
-	codeid='';//登录验证码发送数据
+	codestr='';//登录验证码发送数据
 	whttp.beginRequest("http://www.5iads.cn","GET");
 	whttp.send();
 	whttp.endRequest();
@@ -22,11 +22,22 @@ mainForm.button.oncommand = function(id,event){
 	var codehtml=whttp.post("http://www.5iads.cn/module/user/code.asp",codepostdata);
 	mainForm.edit.text=codehtml;
 	codeid=string.match(codehtml,'id=(.*)|');//判断验证码的ID
+	var codetab={[1]='%25u63A8%25u5E7F';[2]='%25u9A8C%25u8BC1';[113]='%25u6302%25u673A';[114]='%25u7231%25u8d2d';[115]='%25u4e0a%25u4e07';[116]='%25u7b7e%25u5230'};
+	for(k,v in codetab){
+		if(tonumber(k)==tonumber(codeid)){
+			codestr=v;
+			break ;
+		}
 	
-	io.print(codeid);
-	codelogindata='action=loginsys&Username=tempuu&Password=ydyzxnow&checkcode=%25u63A8%25u5E7F&ref=';
+	}
+	//io.print(codestr);
+	codelogindata='action=loginsys&Username=tempuu&Password=ydyzxnow&checkcode='+codestr+'&ref=';
 	codeloginhtml=whttp.post("http://www.5iads.cn/module/user/login.asp",codelogindata);
-	io.print(codeloginhtml);
+	if(string.find(codeloginhtml,'ok')){
+		io.print("登录成功")
+	}else {
+		io.print("登录失败")
+	}
 	
 	
 }
