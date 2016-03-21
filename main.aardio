@@ -3,10 +3,13 @@ import inet.whttp;
 /*DSG{{*/
 mainForm = win.form(text="aardio form";right=759;bottom=469)
 mainForm.add(
-button={cls="button";text="button";left=172;top=59;right=259;bottom=89;z=2};
+button={cls="button";text="登录";left=172;top=59;right=259;bottom=89;z=2};
+button2={cls="button";text="抓取广告ID";left=169;top=109;right=253;bottom=140;z=3};
 edit={cls="edit";left=447;top=22;right=720;bottom=383;autohscroll=false;autovscroll=false;edge=1;multiline=1;z=1}
 )
 /*}}*/
+
+
 
 io.open();
 whttp=inet.whttp();
@@ -38,6 +41,14 @@ mainForm.button.oncommand = function(id,event){
 	}else {
 		io.print("登录失败")
 	}
+	
+	
+}
+
+
+
+mainForm.button2.oncommand = function(id,event){
+	//抓取广告ID
 	
 	
 }
