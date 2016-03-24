@@ -1,19 +1,20 @@
 import win.ui;
 import inet.whttp;
+import web.form;
 /*DSG{{*/
-mainForm = win.form(text="aardio form";right=759;bottom=469)
+mainForm = win.form(text="aardio form";right=1485;bottom=795)
 mainForm.add(
 button={cls="button";text="登录";left=172;top=59;right=259;bottom=89;z=2};
 button2={cls="button";text="抓取广告ID";left=169;top=109;right=253;bottom=140;z=3};
-edit={cls="edit";left=447;top=22;right=720;bottom=383;autohscroll=false;autovscroll=false;edge=1;multiline=1;z=1}
+custom={cls="custom";text="custom";left=566;top=7;right=1477;bottom=675;autosize=1;center=1;edge=1;transparent=1;z=4};
+edit={cls="edit";left=29;top=158;right=302;bottom=396;autohscroll=false;autovscroll=false;edge=1;multiline=1;z=1}
 )
 /*}}*/
 
-
-
 io.open();
 whttp=inet.whttp();
-
+wb=web.form(mainForm.custom);
+wb.noScriptErr=true;
 mainForm.button.oncommand = function(id,event){
 	//mainForm.msgbox( mainForm.button.text );
 	
